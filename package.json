@@ -1,10 +1,18 @@
 {
-    "name": "p5-reddit-clone",
+    "name": "drew-jordan-final-project",
     "version": "1.0.0",
-    "description": "",
+    "description": "Final Project for 389K Full-Stack Web Development",
     "main": "index.js",
     "scripts": {
+        "start": "node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/djdude97/Full-Stack-Final-Project"
+    },
+    "engines": {
+      "node": "10.12.0"
     },
     "keywords": [],
     "author": "",
