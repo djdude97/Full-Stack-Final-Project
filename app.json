@@ -1,0 +1,8 @@
+{
+  "name": "drew-jordan-final-project",
+  "description": "Final Project for 389K Full-Stack Web Development",
+  "repository": "https://github.com/djdude97/Full-Stack-Final-Project",
+  "logo": "",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs"
+}
