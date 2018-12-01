@@ -4,6 +4,8 @@ var logger = require("morgan");
 var exphbs = require("express-handlebars");
 var mongoose = require("mongoose");
 var dotenv = require('dotenv');
+var path = require('path')
+var PORT = process.env.PORT || 5000
 
 var app = express();
 
@@ -85,6 +87,6 @@ app.get("/", function(req, res) {
     res.send('Hello Drew!');
 })
 
-app.listen(3000, function() {
-    console.log("Drew's Final Project is listening on port 3000!:");
+app.listen(PORT, function() {
+    console.log("Drew's Final Project is listening on port:" + PORT);
 });
