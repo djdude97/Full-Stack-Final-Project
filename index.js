@@ -21,7 +21,7 @@ var DEALS;
 Deal.find({}, function(err, deals){
     if (err) throw err;
     DEALS = deals;
-});
+}).sort({$natural: -1});
 
 //starting up express app
 var app = express();
@@ -37,7 +37,7 @@ app.use("/public", express.static("public"));
  * endpoints for the API, and 5 others.
  */
 
- app.post("/deal", function(req, res) {
+ app.post("/api/deal", function(req, res) {
     // Create new deal
     var deal = new Deal({
         name: req.body.name,
@@ -55,21 +55,11 @@ app.use("/public", express.static("public"));
     res.render("post", {name: deal.name, location: deal.location});
 });
 
-app.get("/create", function(req, res) {
+app.get("/api/create", function(req, res) {
     res.render("create");
 });
 
-app.delete("/deal/:id", function(req, res) {
-    // Find deal by id
-    Deal.findByIdAndRemove(req.body.id, function(err, deal){
-        if (err) throw err;
-        if (!deal) return res.send("No deal by that ID found");
-
-        return res.send("Deal " + req.body.id + " was deleted!");
-    });
-});
-
-app.get("/deal", function(req, res) {
+app.get("/api/deal", function(req, res) {
     // Get all deals
     Deal.find({}, function(err, deals){
         if (err) throw err;
@@ -77,20 +67,88 @@ app.get("/deal", function(req, res) {
     });
 });
 
-app.get("/search/location", function(req, res) {
-    // Get all deals with a certain location
-    Deal.find({}, function(err, deals){
+app.post("/api/search/name", function(req, res) {
+    var name = req.body.name;
+    Deal.find({name: name}, function(err, deals) {
         if (err) throw err;
-        res.send(deals);
-    });
+        res.render("search", {deals: deals, name: name});
+    }).sort({$natural: -1});
+});
+
+app.post("/api/search/location", function(req, res) {
+    var location = req.body.location;
+    Deal.find({location: location}, function(err, deals) {
+        if (err) throw err;
+        res.render("search", {deals: deals, location: location});
+      }).sort({$natural: -1});
+});
+
+app.post("/api/search/starts", function(req, res) {
+    var starts = req.body.starts;
+    Deal.find({starts: starts}, function(err, deals) {
+        if (err) throw err;
+        res.render("search", {deals: deals, starts: starts});
+      }).sort({$natural: -1});
+});
+
+app.post("/api/search/price", function(req, res) {
+    var price = req.body.price;
+    Deal.find({price: price}, function(err, deals) {
+        if (err) throw err;
+        res.render("search", {deals: deals, price: price});
+    }).sort({$natural: -1});
+});
+
+app.get("/api/free", function(req, res) {
+    Deal.find({price: 0}, function(err, deals) {
+        if (err) throw err;
+        res.render("free", {deals: deals});
+    }).sort({$natural: -1});
+});
+
+app.get("/api/nocatch", function(req, res) {
+    Deal.find({catch: ""}, function(err, deals) {
+        if (err) throw err;
+        res.render("nocatch", {deals: deals});
+    }).sort({$natural: -1});
+});
+
+app.get("/api/alwaysfree", function(req, res) {
+    Deal.find({ends: ""}, function(err, deals) {
+        if (err) throw err;
+        res.render("alwaysfree", {deals: deals});
+    }).sort({$natural: -1});
+});
+
+app.get("/api/day", function(req, res) {
+    Deal.find({$where: "this.starts == this.ends"}, function(err, deals) {
+        if (err) throw err;
+        res.render("day", {deals: deals});
+    }).sort({$natural: -1});
+});
+
+app.get("/api", function(req, res) {
+  Deal.find({}, function(err, deals){
+      if (err) throw err;
+      DEALS = deals;
+  }).sort({$natural: -1});
+  res.render("home", {deals: DEALS});
 });
 
 app.get("/", function(req, res) {
   Deal.find({}, function(err, deals){
       if (err) throw err;
       DEALS = deals;
-  });
-    res.render("home", {deals: DEALS});
+  }).sort({$natural: -1});
+  res.render("home", {deals: DEALS});
+});
+
+app.get("/api/dl", function(req, res) {
+  Deal.find({}, function(err, deals){
+      if (err) throw err;
+      DEALS = deals;
+  }).sort({$natural: -1});
+  res.json(JSON.stringify(DEALS));
 });
 
 app.listen(PORT, function() {

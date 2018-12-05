@@ -1,0 +1,16 @@
+<h1>No Catch Hopefully Free Food</h1>
+<hr>
+<h2>Newest No Catch Free Food Deals:</h2>
+<hr>
+
+{{#each deals}}
+
+<article>
+<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
+Here's what you get: <b>{{this.items}}</b><h4></h4>
+Available from <b>{{this.starts}}</b> until <b>{{this.ends}}</b><h4></h4>
+But, here's the catch: <b>{{this.catch}}</b>
+<hr>
+</article>
+
+{{/each}}

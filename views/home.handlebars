@@ -1,17 +1,46 @@
 	<h1>Free Food in the Greater College Park Area</h1>
 	<hr>
 
+	<div class="nav">
+	    <h1>Drew's Final Project</h1>
+
+	    Search:
+	    <div>
+	    </div>
+			<form method = "POST" action = "/api/search/name">
+		    <class = "input-field">
+		        <input type = "search" id = nameSearch name = "name" size=  "95" placeholder = "by name">
+						<button type = "submit"> Search </button>
+		  </form>
+	  <form method = "POST" action = "/api/search/location">
+	    <class = "input-field">
+	        <input type = "search" id = locationSearch name = "location" size=  "95" placeholder = "by store/location">
+					<button type = "submit"> Search </button>
+		</form>
+	  <form method = "POST" action = "/api/search/starts">
+	    <class = "input-field">
+	        <input type = "search" id = startsSearch name = "starts" size=  "95" placeholder = "by start date/time">
+					<button type = "submit"> Search </button>
+		</form>
+	  <form method = "POST" action = "/api/search/price">
+	    <class = "input-field">
+	        <input type = "search" id = priceSearch name = "price" size=  "95" placeholder = "by price">
+					<button type = "submit"> Search </button>
+		</form>
+	<br>
+	<hr>
 	<article>
 		<h1>Want to add your own deal?</h1>
-		<a href="/create"><b>Add your own!</b></a>
+		<a href = "/api/create"><b>Add your own!</b></a>
 		<hr>
 	</article>
+		<a href = "/api/dl"><b>Download as JSON</b></a>
 
+<div id = "data-area">
 	<h2>Newest Free Food Deals:</h2>
 	<hr>
 
 {{#each deals}}
-
 <article>
 	<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
 	Here's what you get: <b>{{this.items}}</b><h4></h4>
@@ -19,5 +48,13 @@
 	But, here's the catch: <b>{{this.catch}}</b>
 	<hr>
 </article>
-
 {{/each}}
+
+</div>
+
+<script>
+function update() {
+// $('#nameSearch')
+	 console.log("hi");
+}
+</script>

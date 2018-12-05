@@ -1,0 +1,82 @@
+{{#if location}}
+
+<h1>Free Food only at <b>{{location}}</b></h1>
+<hr>
+<h2>Newest Free Food Deals:</h2>
+<hr>
+
+{{#each deals}}
+
+<article>
+<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
+Here's what you get: <b>{{this.items}}</b><h4></h4>
+Available from <b>{{this.starts}}</b> until <b>{{this.ends}}</b><h4></h4>
+But, here's the catch: <b>{{this.catch}}</b>
+<hr>
+</article>
+
+{{/each}}
+
+{{else if name}}
+
+<h1>Free Food only called <b>{{name}}</b></h1>
+<hr>
+<h2>Newest Free Food Deals:</h2>
+<hr>
+
+{{#each deals}}
+
+<article>
+<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
+Here's what you get: <b>{{this.items}}</b><h4></h4>
+Available from <b>{{this.starts}}</b> until <b>{{this.ends}}</b><h4></h4>
+But, here's the catch: <b>{{this.catch}}</b>
+<hr>
+</article>
+
+{{/each}}
+
+{{else if starts}}
+
+<h1>Free Food starting <b>{{starts}}</b></h1>
+<hr>
+<h2>Newest Free Food Deals:</h2>
+<hr>
+
+{{#each deals}}
+
+<article>
+<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
+Here's what you get: <b>{{this.items}}</b><h4></h4>
+Available from <b>{{this.starts}}</b> until <b>{{this.ends}}</b><h4></h4>
+But, here's the catch: <b>{{this.catch}}</b>
+<hr>
+</article>
+
+{{/each}}
+
+{{else}}
+
+<h1>Free Food only for <b>{{price}}$</b></h1>
+<hr>
+<h2>Newest Free Food Deals:</h2>
+<hr>
+
+{{#each deals}}
+
+<article>
+<b>{{this.name}}</b> at <b>{{this.location}}</b> for <b>{{this.price}}</b>$<h3></h3>
+Here's what you get: <b>{{this.items}}</b><h4></h4>
+Available from <b>{{this.starts}}</b> until <b>{{this.ends}}</b><h4></h4>
+But, here's the catch: <b>{{this.catch}}</b>
+<hr>
+</article>
+
+{{/each}}
+
+{{/if}}
+
+{{#if deals}}
+{{else}}
+Sorry, no matches returned
+{{/if}}
